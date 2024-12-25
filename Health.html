@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-middle {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-middle a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-middle a:hover {
+            color: #0066cc;
+        }
+
+        .nav-middle .active {
+            color: #0066cc;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-icon {
+            position: relative;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .appointment-btn {
+            background: #0066cc;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            color: black;
+            min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero-banner {
+            height: 300px;
+            background: linear-gradient(rgba(127, 154, 181, 0.8), rgba(0, 102, 204, 0.8)),
+                        url('pic2.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            position: absolute;
+            left: 100px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Main Content */
+        .header-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .header-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .header-title span {
+            color: #0066cc;
+        }
+
+        .left-section {
+            width: 50%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto;
+            gap: 20px;
+        }
+
+        .image-wrapper {
+            width: 100%;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .image-wrapper.full-width {
+            grid-column: 1 / -1;
+            height: 250px;
+        }
+
+        .image-wrapper.full-width img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-content {
+            width: 50%;
+        }
+
+        .who-we-are {
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .main-heading {
+            font-size: 36px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .feature {
+            text-align: left;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            color: #0066cc;
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .content {
+            padding: 2rem;
+        }
+
+        .content h2 {
+            margin-bottom: 1rem;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-middle">
+            <a href="index.html">Home</a>
+            <a href="#" class="active">About Us</a>
+            <div class="dropdown">
+                <a href="#">Patient Care &#x25BC;</a>
+                <div class="dropdown-content">
+                    <a href="department.html">Department Care</a>
+                    <a href="#">Department Orthopedics</a>
+                    <a href="#">Find A Doctor</a>
+                    <a href="#">Doctor Details</a>
+                    <!-- <a href="#">Testimonials</a>
+                    <a href="#">Payment</a> -->
+                    <a href="apointment.html">Appointment</a>
+                </div>
+            </div>
+            <a href="#">Pages</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="cart-icon">
+                🛒
+                <span class="cart-badge">0</span>
+            </a>
+            <!-- <span>🔍</span> -->
+            <a href="apointment.html" class="appointment-btn">Appointment</a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <span>🏠</span>
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Health Care</span>
+            </div>
+            <h1>Health Care</h1>
+        </div>
+    </div>
++++++++ 
+    <!-- Main Content -->
+    <!-- <div class="container">
+        <div class="header-content">
+            <div class="left-section">
+                <div class="image-wrapper">
+                    <img src="doctor1.jpg" alt="Doctor in office">
+                </div>
+                <div class="image-wrapper">
+                    <img src="nurse-patient.jpg" alt="Nurse with patient">
+                </div>
+                <div class="image-wrapper full-width">
+                    <img src="doctor-child.jpg" alt="Doctor with child">
+                </div>
+            </div> -->
+            <div class="content">
+                <h2>Heart Surgery</h2>
+                <p>Sed porttitor lectus nibh. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Cras ultricies ligula sed magna dictum porta. Proin eget tortor risus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit.</p>
+            </div>
+        
